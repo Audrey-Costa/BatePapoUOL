@@ -6,6 +6,18 @@ body{
     justify-content: center;
 }
 
+h1{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
 p{
     font-family: 'Roboto';
     font-style: normal;
@@ -31,17 +43,15 @@ p{
     .container-1 > img{
         width: 130px;
         height: 92px;
-        margin: 72px auto 94px auto;
+        margin: 72px auto 44px auto;
     }
 
     .container-1 > input{
         width: 262px;
         height: 54px;
-        margin: 0px auto 15px auto;
+        margin: 50px auto 15px auto;
         border-radius: 4px;
-        color: #AEAEAE;
-        display: flex;
-        align-items: center;
+        color: #000;
         text-align: center;
         font-family: 'Roboto';
         font-style: normal;
@@ -64,6 +74,31 @@ p{
         font-size: 18px;
         line-height: 25px;
     }
+    
+    .load{
+        width: 200px;
+        height: 200px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .load img{
+        width: 300px;
+        height: 300px;
+        top: 170px;
+        object-fit: cover; 
+    }
+
+    .load p{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 25px;
+    }
 
     .hide{
         display: none;
@@ -81,7 +116,6 @@ p{
         position: fixed;
         top: 0px;
         left: 0px;
-        z-index: 1;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -106,8 +140,8 @@ p{
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
+        justify-content: center;
+        align-items: flex-start;
     }
 
     .center p{
@@ -125,7 +159,6 @@ p{
         position: fixed;
         left: 0px;
         bottom: 0px;
-        z-index: 1;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -244,5 +277,36 @@ p{
     .open{
         right: 0px;
         display: inline;
+    }
+
+    ul{
+        width: auto;
+    }
+
+    li{
+        margin: 5px;
+    }
+
+    .messages{
+        width: 98%;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+        align-items: center;
+        font-size: 18px;
+        word-break: break-all;
+    }
+
+    .status{
+        background-color: #DCDCDC;
+    }
+
+    .all{
+        background: #FFFFFF;
+    }
+
+    .reserved{
+        background: #FFDEDE;
     }
 }
