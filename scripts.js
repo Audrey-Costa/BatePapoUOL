@@ -1,6 +1,23 @@
 let messages = [];
 let userName = "Todos";
 let privacy = "message"
+let userListIntervalID;
+const inputLogin = document.querySelector("input")
+const inputMessage = document.querySelector(".bottom input")
+
+inputLogin.addEventListener("keyup", function(event){
+    if (event.key === "Enter"){
+        event.preventDefault();
+        document.querySelector(".container-1 button").click()
+    }
+})
+
+inputMessage.addEventListener("keyup", function(event){
+    if (event.key === "Enter"){
+        event.preventDefault();
+        document.querySelector(".bottom ion-icon").click()
+    }
+})
 
 function logIn(){
     let user = {
@@ -53,9 +70,9 @@ function renderMessages(answer){
     document.querySelector(".container-1").classList.add("hide")
     document.querySelector(".container-2").classList.remove("hide")
     for (let i = 0; i < messages.length; i++){
-//        if ((messages[i].type) === "status"){
-//            document.querySelector("ul").innerHTML += "<li><div class='messages status'>" + //`${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + `${messages[i].//text}` + "</div></li>"
-//        }
+        if ((messages[i].type) === "status"){
+            document.querySelector("ul").innerHTML += "<li><div class='messages status'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
+        }
         if((messages[i].type) === "message"){
             if (messages[i].to === "Todos"){
                 document.querySelector("ul").innerHTML += "<li><div class='messages all'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
@@ -70,6 +87,12 @@ function renderMessages(answer){
             }
             if (messages[i].to === document.querySelector("input").value){
                 document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "reservadamente para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
+            }
+            if (messages[i].from === document.querySelector("input").value){
+                document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "reservadamente para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
+            }
+            if (messages[i].from === document.querySelector("input").value && messages[i].to === "Todos"){
+                document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
             }
         }
     }
@@ -109,12 +132,14 @@ function menuOpen(){
     document.querySelector(".backgroundMenu").classList.toggle("hide")
     userName = "todos"
     promise.then(gerarUsersList)
+    userListIntervalID = setInterval(userListReload, 9000)
 }
 
 function menuClose(){
     document.querySelector(".menu").classList.toggle("open")
     document.querySelector(".backgroundMenu").classList.toggle("hide")
     console.log(privacy)
+    clearInterval(userListIntervalID)
 }
 
 function gerarUsersList(answer){
@@ -128,7 +153,14 @@ function gerarUsersList(answer){
     }
 }
 
+function userListReload(){
+    let promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants")
+    promise.then(gerarUsersList)
+}
+
 function selectUser(element){
+    clearInterval(userListIntervalID)
+    userListIntervalID = setInterval(userListReload, 5000)
     let listUserSelectors = document.querySelectorAll(".pessoas .check")
     for (let i = 0; i < listUserSelectors.length; i++){
         listUserSelectors[i].classList.add("hide")
@@ -153,6 +185,6 @@ function selectPrivacy(element){
 function logout(){
     document.querySelector("input").value = ""
     document.querySelector(".bottom input").value = ""
-    alert("Volte sempre!")
+    alert("Você foi desconectado, volte sempre!")
     window.location.reload()
 }
