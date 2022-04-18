@@ -82,17 +82,14 @@ function renderMessages(answer){
             }
         }
         if ((messages[i].type) === "private_message"){
-            if (messages[i].to === "Todos"){
+            if (messages[i].to === "Todos" && messages[i].from !== document.querySelector("input").value){
                 document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
             }
             if (messages[i].to === document.querySelector("input").value){
                 document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "reservadamente para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
             }
-            if (messages[i].from === document.querySelector("input").value){
+            if (messages[i].from === document.querySelector("input").value && messages[i] !== "Todos"){
                 document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "reservadamente para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
-            }
-            if (messages[i].from === document.querySelector("input").value && messages[i].to === "Todos"){
-                document.querySelector("ul").innerHTML += "<li><div class='messages reserved'>" + `${messages[i].time}` + "&nbsp" + `<h1>${messages[i].from}</h1>` + "&nbsp" + "para" + "&nbsp" + `<h1>${messages[i].to}:</h1>` + "&nbsp" + `${messages[i].text}` + "</div></li>"
             }
         }
     }
@@ -130,7 +127,7 @@ function menuOpen(){
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants")
     document.querySelector(".menu").classList.toggle("open")
     document.querySelector(".backgroundMenu").classList.toggle("hide")
-    userName = "todos"
+    userName = "Todos"
     promise.then(gerarUsersList)
     userListIntervalID = setInterval(userListReload, 9000)
 }
