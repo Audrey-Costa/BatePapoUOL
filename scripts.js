@@ -14,10 +14,12 @@ function logIn(){
 }
 
 function logon(){
-    let intervalID = setInterval(loginMaintenance, 4000)
-    console.log(intervalID)
+    let intervalIDLogin = setInterval(loginMaintenance, 4000)
+    console.log(intervalIDLogin)
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages")
     promise.then(renderMessages)
+    let intervalIDLoadMessages = setInterval(callMessages, 3000)
+    console.log(intervalIDLoadMessages)
 }
 
 function loginMaintenance(){
@@ -25,17 +27,24 @@ function loginMaintenance(){
         name: `${document.querySelector("input").value}`
     }
     let promise = axios.post(`https://mock-api.driven.com.br/api/v6/uol/status`, user)
+    promise.catch(fail)
 }
 
 function fail(error){
+    document.querySelector("input").value = ""
+    document.querySelector(".bottom input").value = ""
     if (error.response.status === 400){
         alert("Nome já em uso! Por favor escolha outro nome.")
-        document.querySelector("input").value = ""
-        window.location.reload()
     }
+    if (error.response.status === 500){
+        alert("Perda de comunicação com o servidor.")
+    }
+
+    window.location.reload()
 }
 
 function renderMessages(answer){
+    document.querySelector("ul").innerHTML = ""
     messages = answer.data
     console.log(messages)
     document.querySelector(".container-1").classList.add("hide")
@@ -54,4 +63,34 @@ function renderMessages(answer){
         }
     }
     document.querySelector(".center").scrollIntoView(false)
+}
+
+function callMessages(){
+    let promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages")
+    promise.then(compareMessages)
+}
+
+function compareMessages(answer){
+    //console.log(answer.data[99].time)
+    //console.log(messages[99].time)
+    //console.log(answer.data[99].time !== messages[99].time)
+    if (answer.data[99].time !== messages[99].time){
+        renderMessages(answer)
+    }
+}
+
+function sendMessage(){
+    let message = {
+        from: `${document.querySelector("input").value}`,
+        to: "Todos",
+        text: `${document.querySelector(".bottom input").value}`,
+        type: "message"
+    }
+    let promisePost = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message)
+    let promiseGet
+    promisePost.then(promiseGet = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages"))
+    promisePost.then(document.querySelector(".bottom input").value = "")
+    promisePost.catch(fail)
+    promiseGet.then(console.log)
+    promiseGet.then(renderMessages)
 }

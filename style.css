@@ -134,9 +134,7 @@ p{
     .center{
         width: 100%;
         height: auto;
-        margin: 80px 0px;
         background-color: #f3f3f3;
-        background-color: red;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -280,7 +278,8 @@ p{
     }
 
     ul{
-        width: auto;
+        width: 100%;
+        margin: 80px 0px;
     }
 
     li{
