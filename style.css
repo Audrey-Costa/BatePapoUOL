@@ -1,0 +1,248 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+
+@media (max-width: 700px){
+    .container-1{
+        width: 376px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .container-1 > img{
+        width: 130px;
+        height: 92px;
+        margin: 72px auto 94px auto;
+    }
+
+    .container-1 > input{
+        width: 262px;
+        height: 54px;
+        margin: 0px auto 15px auto;
+        border-radius: 4px;
+        color: #AEAEAE;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 25px;
+        border: solid 1px #D7D7D7;
+    }
+
+    .container-1 > button{
+        background: #E7E7E7;
+        color: #696969;
+        border: none;
+        width: 109px;
+        height: 45px;
+        border-radius: 8px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    .hide{
+        display: none;
+    }
+
+
+    .container-2{
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .top{
+        width: 100%;
+        height: 80px;
+        background-color: rgba(255, 255, 255, 0.5);
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .top img{
+        width: 75px;
+        height: 54px;
+        margin: 0 20px;
+    }
+    .top ion-icon{
+        font-size: 40px;
+        margin: 0 20px;
+    }
+
+    .center{
+        width: 100%;
+        height: auto;
+        margin: 80px 0px;
+        background-color: #f3f3f3;
+        background-color: red;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .center p{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 5px;
+        text-align: start;
+    }
+
+    .bottom{
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.5);
+
+    }
+
+    .bottom input{
+        width: 300px;
+        height: 30px;
+        border: none;
+        font-family: 'Roboto';
+        font-style: italic;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        color: #000;
+
+    }
+
+    .bottom ion-icon{
+        font-size: 26px;
+        margin: 0 10px;
+    }
+
+    .background{
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .menu{
+        position: fixed;
+        z-index: 2;
+        top: 0px;
+        right: -260px;
+        width: 260px;
+        height: 100%;
+        background-color: #fff;
+        transition: right 600ms linear;
+    }
+
+    .pessoas{
+        height: 40%;
+        overflow-y: scroll;
+        margin-bottom: 20px;
+    }
+
+    .pessoas div{
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 5px 20px
+    }
+
+    .pessoas p{
+        margin-left: 8px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+
+    }
+
+    .options{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .option{
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 7px 20px;
+    }
+
+    .option p{
+        margin-left: 8px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        color: #000000;
+    }
+
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 84px;
+    }
+
+    .check{
+        position: absolute;
+        right: 5px;
+        color: #28BB25;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .open{
+        right: 0px;
+        display: inline;
+    }
+}
